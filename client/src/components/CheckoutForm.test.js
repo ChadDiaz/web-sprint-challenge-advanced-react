@@ -10,7 +10,7 @@ test("form header renders", () => {
     expect(screen.getByText(/checkout form/i)).toBeInTheDocument();
 });
 
-test("form shows success message on submit with form details", () => {
+test("form shows success message on submit with form details", async () => {
     render(<CheckoutForm />);
 
     // grab the fields in the form //
@@ -29,4 +29,28 @@ test("form shows success message on submit with form details", () => {
     userEvent.type(city, 'London');
     userEvent.type(state, 'England');
     userEvent.type(zip, '12345');
+
+    // make the assertions
+    expect(firstName).toHaveValue('Chad');
+    expect(lastName).toHaveValue('Diaz');
+    expect(address).toHaveValue('10 Downing Street');
+    expect(city).toHaveValue('London');
+    expect(state).toHaveValue('England');
+    expect(zip).toHaveValue('12345')
+
+    // click the checkout button
+    userEvent.click(submit);
+
+    //see if the message is on the screen
+    const submitMesg = await screen.queryByText(/Your new green friends will be shipped to:/i);
+    expect(submitMesg).toBeInTheDocument();
+
+    // make sure that after the message, the form data is showing up.
+    const formName = submitMesg.nextElementSibling.nextElementSibling.nextElementSibling;
+    const formStreet = formName.nextElementSibling;
+    const formCityStateZip = formStreet.nextElementSibling;
+
+    expect(formName).toBeTruthy();
+    expect(formStreet).toBeTruthy();
+    expect(formCityStateZip).toBeTruthy();
 });
