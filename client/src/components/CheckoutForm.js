@@ -16,7 +16,7 @@ const initialValue = {
 
 const CheckoutForm = (prop) => {
 
-  const [values, showSuccessMessage, handleChanges, handleSubmit] = useForm(initialValue)
+  const [initialValues, showSuccessMessage, handleChanges, handleSubmit] = useForm(initialValue)
 
   // const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   // const [values, setValues] = useState(initialValue);
@@ -39,7 +39,7 @@ const CheckoutForm = (prop) => {
           <input
             id='firstName'
             name="firstName"
-            value={values.firstName}
+            value={initialValues.firstName}
             onChange={handleChanges}
           />
         </label>
@@ -48,7 +48,7 @@ const CheckoutForm = (prop) => {
           <input
             id='lastName'
             name="lastName"
-            value={values.lastName}
+            value={initialValues.lastName}
             onChange={handleChanges}
           />
         </label>
@@ -57,21 +57,21 @@ const CheckoutForm = (prop) => {
           <input
             id='address'
             name="address"
-            value={values.address}
+            value={initialValues.address}
             onChange={handleChanges}
           />
         </label>
         <label>
           City:
-          <input id='city' name="city" value={values.city} onChange={handleChanges} />
+          <input id='city' name="city" value={initialValues.city} onChange={handleChanges} />
         </label>
         <label>
           State:
-          <input id='state' name="state" value={values.state} onChange={handleChanges} />
+          <input id='state' name="state" value={initialValues.state} onChange={handleChanges} />
         </label>
         <label>
           Zip:
-          <input id='zip' name="zip" value={values.zip} onChange={handleChanges} />
+          <input id='zip' name="zip" value={initialValues.zip} onChange={handleChanges} />
         </label>
         <button>Checkout</button>
       </form>
@@ -85,11 +85,11 @@ const CheckoutForm = (prop) => {
           <br />
           <br />
           <p>
-            {values.firstName} {values.lastName}
+            {initialValues.firstName} {initialValues.lastName}
           </p>
-          <p>{values.address}</p>
+          <p>{initialValues.address}</p>
           <p>
-            {values.city}, {values.state} {values.zip}
+            {initialValues.city}, {initialValues.state} {initialValues.zip}
           </p>
         </div>
       )}
